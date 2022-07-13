@@ -63,6 +63,8 @@ void rfm_init(void)
 	// Set up to drive the Radio Module
 	digitalWrite(RFMSELPIN, HIGH);
 	pinMode(RFMSELPIN, OUTPUT);
+	//       MOSIpin, MISOpin, SCKpin
+	SPI.pins(PIN_PC0, PIN_PC1, PIN_PC2);
 	SPI.begin();
 	SPI.setBitOrder(MSBFIRST);
 	SPI.setDataMode(0);
@@ -122,7 +124,8 @@ bool rfm_send(const byte *data, const byte size, const byte group, const byte no
 		writeReg(0x07, 0xE4); // RegFrfMsb: Frf = Rf Freq / 61.03515625 Hz = 0xE40000 = 912.00 MHz as used by JeeLib 
 		writeReg(0x08, 0x00); // RegFrfMid
 		writeReg(0x09, 0x00); // RegFrfLsb
-  }
+  }
+
 	else // default to 433 MHz band
 	{
     writeReg(0x07, 0x6C); // RegFrfMsb: Frf = Rf Freq / 61.03515625 Hz = 0x6C8000 = 434.00 MHz as used by JeeLib 
@@ -252,10 +255,12 @@ void rfm_init(void)
 	pinMode (RFMSELPIN, OUTPUT);
 	digitalWrite(RFMSELPIN,HIGH);
 	// start the SPI library:
+	//       MOSIpin, MISOpin, SCKpin
+	SPI.pins(PIN_PC0, PIN_PC1, PIN_PC2);
 	SPI.begin();
 	SPI.setBitOrder(MSBFIRST);
 	SPI.setDataMode(0);
-	SPI.setClockDivider(SPI_CLOCK_DIV8);
+	SPI.setClockDivider(SPI_CLOCK_DIV4);
 	// initialise RFM12
 	delay(200); // wait for RFM12 POR
 	rfm_write(0x0000); // clear SPI

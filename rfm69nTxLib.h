@@ -46,7 +46,7 @@ bool rfm_send(const byte *data, const byte size, const byte group, const byte no
 */
 
 #ifndef RFMSELPIN
- #define RFMSELPIN 10   // RFM select pin
+ #define RFMSELPIN PIN_PB5   // RFM select pin
 #endif
 #ifndef RFMIRQPIN
  #define RFMIRQPIN 2    // RFM interrupt pin
