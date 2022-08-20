@@ -82,26 +82,26 @@ void rfm_init(void)
 	writeReg(0x02, 0x00); // RegDataModul: RF_DATAMODUL_DATAMODE_PACKET | RF_DATAMODUL_MODULATIONTYPE_FSK | RF_DATAMODUL_MODULATIONSHAPING_00 = no shaping
 	writeReg(0x03, 0x02); // RegBitrateMsb  ~49.23k BPS
 	writeReg(0x04, 0x8A); // RegBitrateLsb
-	writeReg(0x05, 0x02); // RegFdevMsb: ~45 kHz 
-	writeReg(0x06, 0xE1); // RegFdevLsb
-	writeReg(0x0B, 0x20); // RegAfcCtrl: Improved
-	writeReg(0x19, 0x4A); // RxBw 100 KHz
-  writeReg(0x1A, 0x42); // AfcBw 125 KHz
+	writeReg(0x05, 0x02); // RegFdevMsb: ~45 kHz                                 ** 0x05
+	writeReg(0x06, 0xE1); // RegFdevLsb                                          ** 0xC3
+	writeReg(0x0B, 0x20); // RegAfcCtrl: Improved                                ** Not set
+	writeReg(0x19, 0x4A); // RxBw 100 KHz                                        ** Not set
+  writeReg(0x1A, 0x42); // AfcBw 125 KHz                                       ** Not set
   writeReg(0x11, 0x99); // Transmit Power - set at transmit time
 	writeReg(0x1E, 0x2C); // AfcAutoclearOn, AfcAutoOn
 	writeReg(0x25, 0x80); // RegDioMapping1: DIO0 is used as IRQ 
-	writeReg(0x26, 0x07); // RegDioMapping2: ClkOut off
-//	writeReg(0x28, 0x00); // RegIrqFlags2: FifoOverrun
-  writeReg(0x29, 0xC8); // RssiThresh = -100 dB
-  writeReg(0x2D, 0x05); // Preamble 5 bytes
+	writeReg(0x26, 0x07); // RegDioMapping2: ClkOut off                          ** 0x03
+//	writeReg(0x28, 0x00); // RegIrqFlags2: FifoOverrun                         ** Enabled
+  writeReg(0x29, 0xC8); // RssiThresh = -100 dB                                ** Not set
+  writeReg(0x2D, 0x05); // Preamble 5 bytes                                    ** Not set
 	writeReg(0x2E, 0x88); // RegSyncConfig: SyncOn | FifoFillCondition | SyncSize = 2 bytes | SyncTol = 0
 	writeReg(0x2F, 0x2D); // RegSyncValue1: Same as JeeLib
-	writeReg(0x37, 0xD0); // RegPacketConfig1: PacketFormat=variable | whitening | CrcOn | !CrcAutoClearOff | !AddressFiltering
-  writeReg(0x38, 0x42); // PayloadLength = 66
-  writeReg(0x3C, 0x8F); // FifoThresh = not empty, level 15
-  writeReg(0x3D, 0x12); // RegPacketConfig2 = interpkt = 1, autorxrestart off
-  writeReg(0x6F, 0x20); // RegTestDagc = fading margin on
-  writeReg(0x71, 0x02); // RegTestAfc = LowBeta afc offset
+	writeReg(0x37, 0xD0); // RegPacketConfig1: PacketFormat=variable | whitening | CrcOn | !CrcAutoClearOff | !AddressFiltering ** 0x00
+  writeReg(0x38, 0x42); // PayloadLength = 66                                  ** Not set
+  writeReg(0x3C, 0x8F); // FifoThresh = not empty, level 15                    ** Not set
+  writeReg(0x3D, 0x12); // RegPacketConfig2 = interpkt = 1, autorxrestart off  ** Not set
+  writeReg(0x6F, 0x20); // RegTestDagc = fading margin on                      ** Not set
+  writeReg(0x71, 0x02); // RegTestAfc = LowBeta afc offset                     ** Not set
 
 }
 
