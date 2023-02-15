@@ -30,15 +30,16 @@
 #include <SPI.h>								                 // SPI bus for the RFM module
 #include <util/crc16.h>                          // Checksum for JeeLib compatibility
 
-enum rfband {RFM_433MHZ = 1, RFM_868MHZ, RFM_915MHZ }; // frequency band.
-
+#define RF69_433MHZ            43
+#define RF69_868MHZ            86
+#define RF69_915MHZ            91
 /*
  * "Public" functions for general use
  */
  
 void rfm_init(void);
 
-bool rfm_send(const byte *data, const byte size, const byte group, const byte node, const uint8_t rf_freq = RFM_433MHZ, const byte rf_power = 25, const int threshold = -97, const byte timeout = 15);
+bool rfm_send(const byte *data, const byte size, const byte group, const byte node, const uint8_t rf_freq = RF69_433MHZ, const byte rf_power = 25, const int threshold = -97, const byte timeout = 15);
 
 /* rf_power: 69CW range is min = 0 to max = 31. 12B range is 8 - 25 
    threshold: 69CW range is 0 = 0 dBm to -127 dBm   12B range is -73 dBm to -103 dBm
